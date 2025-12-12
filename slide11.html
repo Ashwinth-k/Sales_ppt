@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Smart Inbound Sales System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+    
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Ambience */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #064e3b;
+            top: -200px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #065f46;
+            bottom: -150px;
+            right: -100px;
+        }
+
+        /* Header */
+        .header-section {
+            z-index: 10;
+            padding: 40px 60px 10px 60px;
+            width: 100%;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #d1fae5;
+            font-weight: 300;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            padding: 20px 60px 40px 60px;
+            z-index: 10;
+            gap: 40px;
+        }
+
+        /* Left Column: Process Stack */
+        .process-column {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-left: 30px;
+            /* Space for the vertical line */
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            bottom: 20px;
+            width: 2px;
+            background: rgba(16, 185, 129, 0.3);
+            border-radius: 2px;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            height: 80%;
+            /* Simulating progress */
+            width: 2px;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .process-item {
+            position: relative;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .process-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .node-point {
+            position: absolute;
+            left: -38px;
+            /* -30px padding + -8px radius correction */
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #022c22;
+            border: 2px solid #10b981;
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .process-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .process-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #10b981;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-icon-box {
+            width: 44px;
+            height: 44px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6ee7b7;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            line-height: 1.3;
+        }
+
+        .step-number {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Right Column: Outcome */
+        .outcome-column {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .outcome-box {
+            background: rgba(6, 78, 59, 0.4);
+            border: 1px solid #10b981;
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Decorative corner */
+        .outcome-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-bottom-left-radius: 60px;
+        }
+
+        .outcome-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .outcome-icon {
+            font-size: 1.8rem;
+            color: #10b981;
+            margin-right: 15px;
+        }
+
+        .outcome-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .stat-item {
+            margin-bottom: 20px;
+        }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #d1fae5;
+            margin-bottom: 6px;
+        }
+
+        .stat-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background-color: #10b981;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .stat-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .outcome-summary {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #10b981;
+        }
+
+        .outcome-summary p {
+            font-size: 0.95rem;
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo" style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">Smart Inbound Sales System</h1>
+            <div class="title-underline"></div>
+            <p class="subtitle">Optimizing the lead-to-conversion process for speed and personalization</p>
+        </div>
+        <!-- Content -->
+        <div class="content-wrapper">
+            <!-- Left: Process Stack -->
+            <div class="process-column">
+                <!-- Timeline Lines -->
+                <div class="timeline-line"></div>
+                <div class="timeline-progress"></div>
+                <!-- Step 1 -->
+                <div class="process-item">
+                    <div class="node-point"></div>
+                    <div class="process-card">
+                        <div class="step-icon-box">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Rapid Response</h3>
+                            <p>All high-intent leads are contacted within 10 minutes of inquiry.</p>
+                        </div>
+                        <div class="step-number">01</div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="process-item">
+                    <div class="node-point"></div>
+                    <div class="process-card">
+                        <div class="step-icon-box">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Lead Segmentation</h3>
+                            <p>Categorize leads into High / Medium / Low intent based on source &amp; behavior.</p>
+                        </div>
+                        <div class="step-number">02</div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="process-item">
+                    <div class="node-point"></div>
+                    <div class="process-card">
+                        <div class="step-icon-box">
+                            <i class="fas fa-clipboard-question"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Discovery Questions</h3>
+                            <p>Standardize the initial call: Track current methods, teacher challenges &amp; goals.</p>
+                        </div>
+                        <div class="step-number">03</div>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="process-item">
+                    <div class="node-point"></div>
+                    <div class="process-card">
+                        <div class="step-icon-box">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Personalized Demo Planning</h3>
+                            <p>Demos are built specifically around the challenges identified in discovery.</p>
+                        </div>
+                        <div class="step-number">04</div>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="process-item">
+                    <div class="node-point" style="border-color: #6ee7b7;"></div>
+                    <div class="process-card">
+                        <div class="step-icon-box">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Structured Follow-up</h3>
+                            <p>Implement a high-value, 30-day follow-up cadence (Case Studies / Whitepapers).</p>
+                        </div>
+                        <div class="step-number">05</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right: Outcome Dashboard -->
+            <div class="outcome-column">
+                <div class="outcome-box">
+                    <div class="outcome-header">
+                        <i class="fas fa-rocket outcome-icon"></i>
+                        <h2 class="outcome-title">System Outcomes</h2>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span>Conversion Cycle Speed</span>
+                            <span class="text-green-400 font-bold">+40% Faster</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span>Demo Attendance Rate</span>
+                            <span class="text-green-400 font-bold">+65% Increase</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span>Lead Qualification Accuracy</span>
+                            <span class="text-green-400 font-bold">95% Precise</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="outcome-summary">
+                        <p><i class="fas fa-check-circle mr-2"></i>Significantly reduces lead leakage and accelerates
+                            pipeline velocity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight); 
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+    
+</body>
+
+</html>

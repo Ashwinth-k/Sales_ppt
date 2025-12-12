@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Market Opportunity &amp; Problem Space</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Elements */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #065f46;
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #047857;
+            bottom: -150px;
+            left: -100px;
+        }
+
+        /* Header */
+        .header-section {
+            z-index: 10;
+            padding: 40px 60px 20px 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        /* Content Layout */
+        .content-split {
+            display: flex;
+            width: 100%;
+            flex: 1;
+            padding: 0 60px 40px 60px;
+            z-index: 10;
+            gap: 50px;
+        }
+
+        .left-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(6, 95, 70, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #6ee7b7;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Problem List */
+        .problem-item {
+            display: flex;
+            margin-bottom: 24px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #ef4444;
+            /* Red for problems */
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.2s;
+        }
+
+        .problem-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .problem-icon {
+            min-width: 40px;
+            height: 40px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #f87171;
+        }
+
+        .problem-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #fca5a5;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .problem-content p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            line-height: 1.4;
+        }
+
+        /* Opportunity Section */
+        .chart-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            min-height: 250px;
+        }
+
+        .opportunity-text {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #d1fae5;
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+            border-radius: 20px;
+        }
+
+        .highlight-pill {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #6ee7b7;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo" style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">Market Opportunity &amp; Problem Space</h1>
+            <div class="title-underline"></div>
+        </div>
+        <!-- Main Content Split -->
+        <div class="content-split">
+            <!-- Left Column: The Struggle -->
+            <div class="left-column">
+                <h2 class="section-title">
+                    <i class="fas fa-exclamation-circle text-red-400"></i>
+                    The Institutional Struggle
+                </h2>
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="problem-content">
+                        <h4>Manual Management (70%)</h4>
+                        <p>Most institutions still rely on non-digital or basic manual academic management.</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <div class="problem-content">
+                        <h4>Teacher Burnout</h4>
+                        <p>Heavy administrative workload distracts educators from core teaching duties.</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-search-minus"></i>
+                    </div>
+                    <div class="problem-content">
+                        <h4>Data Void</h4>
+                        <p>Lack of timely, analytical insights for HODs and top management decision-making.</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="problem-content">
+                        <h4>Regulatory Push</h4>
+                        <p>NEP 2020 mandates and strongly encourages digital academic transformation.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: The Opportunity -->
+            <div class="right-column">
+                <div class="grid-bg"></div>
+                <div style="position: relative; z-index: 5;">
+                    <h2 class="section-title">
+                        <i class="fas fa-rocket text-green-400"></i>
+                        The Opportunity
+                    </h2>
+                    <p class="opportunity-text">
+                        A fast-growing, high-value demand for AI-based academic automation that connects data to
+                        decision-making.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="adoptionChart"></canvas>
+                    </div>
+                    <div class="text-center">
+                        <span class="highlight-pill">
+                            <i class="fas fa-arrow-up mr-2"></i>Projected 45% CAGR in EdTech AI Adoption
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('adoptionChart').getContext('2d');
+
+        // Create gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.5)'); // Top color
+        gradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)'); // Bottom color
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Digital Adoption in Education',
+                    data: [20, 35, 55, 75, 95],
+                    borderColor: '#10b981',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#10b981',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(6, 78, 59, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#d1fae5',
+                        padding: 10,
+                        borderColor: 'rgba(16, 185, 129, 0.5)',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            callback: function (value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                family: 'Poppins'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight);
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+
+</body>
+
+</html>

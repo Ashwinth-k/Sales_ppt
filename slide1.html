@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>WeLe IntelliTech - Cover</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            /* Deep Green */
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Faux Gradient Background Elements using blur */
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #065f46;
+            /* Lighter Green */
+            top: -200px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #047857;
+            /* Mid Green */
+            bottom: -100px;
+            right: -100px;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background-color: #10b981;
+            /* Bright Green accent */
+            top: 40%;
+            left: 60%;
+            opacity: 0.15;
+        }
+
+        /* Content Styling */
+        .content-wrapper {
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .main-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            /* 64px */
+            line-height: 1.1;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            /* 28px */
+            font-weight: 300;
+            color: #d1fae5;
+            /* Light green text */
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-logo {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .brand-icon {
+            background-color: #10b981;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Decorative Tech Lines (SVG) */
+        .tech-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            z-index: 5;
+            opacity: 0.6;
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .floating-icon {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6ee7b7;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 8;
+        }
+
+        .icon-1 {
+            top: 20%;
+            left: 15%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+
+        .icon-2 {
+            bottom: 25%;
+            right: 15%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+
+        .icon-3 {
+            top: 25%;
+            right: 25%;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .tagline-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            color: #6ee7b7;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background Elements -->
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+        <div class="glow-blob blob-3"></div>
+        <div class="tech-grid"></div>
+        <!-- Branding -->
+        <div class="brand-logo">
+            <img src="logo.png" alt="WeLe IntelliTech Logo"
+                style="width: 50px; height: 50px; object-fit: contain; margin-right: 12px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+            <span>WeLe IntelliTech</span>
+        </div>
+        <!-- Floating Icons -->
+        <div class="floating-icon icon-1">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="floating-icon icon-2">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="floating-icon icon-3">
+            <i class="fas fa-robot"></i>
+        </div>
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <div class="tagline-pill">
+                <p>Empowering Institutions with Intelligent Analytics</p>
+            </div>
+            <h1 class="main-title">
+                <p>AI-Powered</p>
+                <p>Academic Automation</p>
+            </h1>
+            <div class="w-32 h-1 bg-green-500 mx-auto rounded mb-8"></div>
+            <h2 class="subtitle">
+                <p>Innovative Market &amp; Sales Strategy 2025</p>
+            </h2>
+        </div>
+        <!-- SVG Wave Illustration -->
+        <svg class="tech-wave" preserveaspectratio="none" viewbox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <lineargradient id="wave-grad" x1="0%" x2="100%" y1="0%" y2="0%">
+                    <stop offset="0%" style="stop-color:#064e3b;stop-opacity:0"></stop>
+                    <stop offset="50%" style="stop-color:#10b981;stop-opacity:0.3"></stop>
+                    <stop offset="100%" style="stop-color:#064e3b;stop-opacity:0"></stop>
+                </lineargradient>
+            </defs>
+            <path
+                d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                fill="url(#wave-grad)" fill-opacity="1"></path>
+            <path
+                d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,160C960,139,1056,149,1152,165.3C1248,181,1344,203,1392,213.3L1440,224"
+                fill="none" stroke="rgba(16, 185, 129, 0.4)" stroke-width="2"></path>
+        </svg>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight);
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+
+</body>
+
+</html>

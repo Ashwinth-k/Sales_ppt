@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Innovative Marketing Strategies</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Ambience (No CSS Gradients) */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 700px;
+            height: 700px;
+            background-color: #064e3b;
+            top: -300px;
+            left: 200px;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: #065f46;
+            bottom: -200px;
+            right: -100px;
+        }
+
+        /* Header */
+        .header-section {
+            z-index: 10;
+            padding: 40px 60px 0 60px;
+            width: 100%;
+            text-align: center;
+            height: 120px;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto;
+        }
+
+        /* Main Content Area */
+        .content-area {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* Central Hub */
+        .center-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background-color: rgba(6, 78, 59, 0.8);
+            border: 2px solid rgba(16, 185, 129, 0.5);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .hub-icon {
+            font-size: 2.5rem;
+            color: #34d399;
+            margin-bottom: 8px;
+        }
+
+        .hub-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        /* Strategy Cards */
+        .strategy-card {
+            position: absolute;
+            width: 260px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .strategy-card:hover {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 30;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6ee7b7;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #d1d5db;
+            line-height: 1.4;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            background-color: #064e3b;
+            border: 1px solid #10b981;
+            border-radius: 50%;
+            color: #10b981;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Positioning Cards - Radius approx 250px from center (640, 300 in local coords of content-area) */
+        /* Content area starts after header (120px), so height is 600px. Center is 300px relative y. */
+
+        /* 
+       1. Top: 0 deg (-90) -> (0, -230)
+       2. Top Right: 72 deg (-18) -> (219, -71)
+       3. Bottom Right: 144 deg (54) -> (135, 186)
+       4. Bottom Left: 216 deg (126) -> (-135, 186)
+       5. Top Left: 288 deg (198) -> (-219, -71)
+    */
+
+        .pos-1 {
+            top: 15%;
+            left: 50%;
+        }
+
+        .pos-2 {
+            top: 35%;
+            left: 80%;
+        }
+
+        .pos-3 {
+            top: 75%;
+            left: 70%;
+        }
+
+        .pos-4 {
+            top: 75%;
+            left: 30%;
+        }
+
+        .pos-5 {
+            top: 35%;
+            left: 20%;
+        }
+
+        /* SVG Connectors */
+        .connectors {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Animation */
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            border: 1px dashed rgba(16, 185, 129, 0.2);
+            border-radius: 50%;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo" style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">Innovative Marketing Strategies</h1>
+            <div class="title-underline"></div>
+            <p style="margin-top: 10px; color: #d1fae5; font-size: 1.1rem;">Centered on thought leadership and problem
+                resolution</p>
+        </div>
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Connecting Lines SVG -->
+            <svg class="connectors">
+                <!-- Center is 640, 300 (relative to content-area which is roughly top 120 to 720) -->
+                <!-- Using percentages for lines to match card positions roughly -->
+                <!-- Center coord in slide: 640, 420 -->
+                <!-- Card 1: 640, 210 (15% of 600 + offset? No, let's just use absolute px coordinates for SVG lines based on slide layout) -->
+                <!-- Adjusted Layout Logic: 
+                 Header: 120px height. 
+                 Content Area: 600px height. 
+                 Center of Content Area: y=300 relative. (Total Slide Y = 420)
+                 Radius = 220px.
+            -->
+                <defs>
+                    <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
+                        <polygon fill="#10b981" opacity="0.5" points="0 0, 10 3.5, 0 7"></polygon>
+                    </marker>
+                </defs>
+                <!-- Lines from Center (640, 300 relative) to cards -->
+                <!-- 1. Top -->
+                <line marker-end="url(#arrowhead)" opacity="0.3" stroke="#10b981" stroke-dasharray="5,5"
+                    stroke-width="1" x1="640" x2="640" y1="300" y2="130"></line>
+                <!-- 2. Top Right -->
+                <line marker-end="url(#arrowhead)" opacity="0.3" stroke="#10b981" stroke-dasharray="5,5"
+                    stroke-width="1" x1="640" x2="980" y1="300" y2="230"></line>
+                <!-- 3. Bottom Right -->
+                <line marker-end="url(#arrowhead)" opacity="0.3" stroke="#10b981" stroke-dasharray="5,5"
+                    stroke-width="1" x1="640" x2="860" y1="300" y2="470"></line>
+                <!-- 4. Bottom Left -->
+                <line marker-end="url(#arrowhead)" opacity="0.3" stroke="#10b981" stroke-dasharray="5,5"
+                    stroke-width="1" x1="640" x2="420" y1="300" y2="470"></line>
+                <!-- 5. Top Left -->
+                <line marker-end="url(#arrowhead)" opacity="0.3" stroke="#10b981" stroke-dasharray="5,5"
+                    stroke-width="1" x1="640" x2="300" y1="300" y2="230"></line>
+            </svg>
+            <!-- Pulse Ring Decoration -->
+            <div class="pulse-ring"></div>
+            <!-- Center Hub -->
+            <div class="center-hub">
+                <i class="fas fa-bullseye hub-icon"></i>
+                <span class="hub-text">Growth<br />Strategy</span>
+            </div>
+            <!-- Card 1: Top -->
+            <div class="strategy-card pos-1">
+                <div class="step-number">1</div>
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3 class="card-title">Academic Maturity Targeting</h3>
+                </div>
+                <p class="card-desc">Pitch based on their current digital adoption stage (manual vs basic digital).</p>
+            </div>
+            <!-- Card 2: Top Right -->
+            <div class="strategy-card pos-2">
+                <div class="step-number">2</div>
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-comments"></i></div>
+                    <h3 class="card-title">Problem-First Storytelling</h3>
+                </div>
+                <p class="card-desc">Start with teacher pain or management risk before detailing features.</p>
+            </div>
+            <!-- Card 3: Bottom Right -->
+            <div class="strategy-card pos-3">
+                <div class="step-number">3</div>
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-filter"></i></div>
+                    <h3 class="card-title">Value Funnels</h3>
+                </div>
+                <p class="card-desc">Short explainer videos → detailed use cases → personalized ROI dashboards.</p>
+            </div>
+            <!-- Card 4: Bottom Left -->
+            <div class="strategy-card pos-4">
+                <div class="step-number">4</div>
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="card-title">Local Influencer Partnerships</h3>
+                </div>
+                <p class="card-desc">Collaborate with respected regional academic leaders and LMS providers.</p>
+            </div>
+            <!-- Card 5: Top Left -->
+            <div class="strategy-card pos-5">
+                <div class="step-number">5</div>
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3 class="card-title">Institution Insight Sheets</h3>
+                </div>
+                <p class="card-desc">Offer free reports on industry-wide academic improvement opportunities.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight);
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+
+</body>
+
+</html>

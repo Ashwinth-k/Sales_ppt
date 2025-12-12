@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>90-Day Marketing &amp; Growth Roadmap</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+    
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Elements */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #065f46;
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #047857;
+            bottom: -100px;
+            right: -100px;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background-color: #10b981;
+            top: 40%;
+            left: 40%;
+            opacity: 0.1;
+        }
+
+        /* Grid Overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Simulating grid with background-image not gradient for safety, or minimal use */
+            background-size: 30px 30px;
+            background-image: radial-gradient(circle, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        /* Header */
+        .header-section {
+            z-index: 10;
+            padding: 40px 60px 20px 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        /* Roadmap Container */
+        .roadmap-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 60px 40px 60px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .connecting-line {
+            position: absolute;
+            top: 45%;
+            left: 100px;
+            right: 100px;
+            height: 2px;
+            background: rgba(16, 185, 129, 0.3);
+            z-index: 0;
+            border-top: 2px dashed rgba(16, 185, 129, 0.3);
+        }
+
+        .phase-card {
+            position: relative;
+            flex: 1;
+            margin: 0 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 380px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(16, 185, 129, 0.6);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .phase-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #064e3b;
+            border: 2px solid #10b981;
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 3;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto 16px auto;
+            color: #6ee7b7;
+            font-size: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover .icon-circle {
+            background: #10b981;
+            color: #022c22;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+
+        .card-title {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .focus-area {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+        }
+
+        .initiative-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .initiative-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+
+        .check-icon {
+            margin-right: 12px;
+            margin-top: 4px;
+            color: #10b981;
+            font-size: 0.8rem;
+        }
+
+        /* Connector Dot */
+        .connector-dot {
+            position: absolute;
+            top: 45%;
+            right: -23px;
+            width: 16px;
+            height: 16px;
+            background: #064e3b;
+            border: 2px solid #10b981;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Last card doesn't need a connector dot pointing right */
+        .phase-card:last-child .connector-dot {
+            display: none;
+        }
+
+        /* Watermark Number */
+        .watermark {
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 6rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo" style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+        <div class="grid-overlay"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">90-Day Marketing &amp; Growth Roadmap</h1>
+            <div class="title-underline"></div>
+            <p class="text-gray-300 text-lg font-light max-w-4xl mx-auto">A strategic, phased approach to establish
+                market presence, engage stakeholders, and drive conversions.</p>
+        </div>
+        <!-- Roadmap Content -->
+        <div class="roadmap-container">
+            <!-- Connecting Line Background -->
+            <div class="connecting-line"></div>
+            <!-- Phase 1 -->
+            <div class="phase-card">
+                <div class="phase-badge">Month 1</div>
+                <div class="icon-circle">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h2 class="card-title">Awareness</h2>
+                <div class="focus-area">Establish Market Presence</div>
+                <ul class="initiative-list">
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Launch high-impact LinkedIn micro-content strategy.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Release "AI-in-Education" video series to build thought leadership.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Direct outreach to approx. 500 targeted institutions.</p>
+                    </li>
+                </ul>
+                <div class="watermark">01</div>
+                <!-- Right connector -->
+                <div class="connector-dot" style="top: 50%; transform: translateY(-50%); right: -23px;"></div>
+            </div>
+            <!-- Phase 2 -->
+            <div class="phase-card">
+                <div class="phase-badge">Month 2</div>
+                <div class="icon-circle">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h2 class="card-title">Engagement</h2>
+                <div class="focus-area">Qualify &amp; Demonstrate Value</div>
+                <ul class="initiative-list">
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Host targeted webinars and exclusive demo invites.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Publish mini case studies proving efficiency gains.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Offer "Academic Efficiency Audits" as a high-value lead magnet.</p>
+                    </li>
+                </ul>
+                <div class="watermark">02</div>
+                <!-- Right connector -->
+                <div class="connector-dot" style="top: 50%; transform: translateY(-50%); right: -23px;"></div>
+            </div>
+            <!-- Phase 3 -->
+            <div class="phase-card">
+                <div class="phase-badge">Month 3</div>
+                <div class="icon-circle">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2 class="card-title">Conversions</h2>
+                <div class="focus-area">Close Pilots &amp; Expand</div>
+                <ul class="initiative-list">
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Conduct on-ground campus demos for high-intent leads.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Generate customized proposals based on audit results.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle check-icon"></i>
+                        <p>Initiate partner-driven regional expansion.</p>
+                    </li>
+                </ul>
+                <div class="watermark">03</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight); 
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Personal Branding &amp; Final CTA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            /* Split layout */
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Elements */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 800px;
+            height: 800px;
+            background-color: #064e3b;
+            top: -400px;
+            left: -200px;
+        }
+
+        .blob-2 {
+            width: 700px;
+            height: 700px;
+            background-color: #065f46;
+            bottom: -300px;
+            right: -100px;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background-color: #10b981;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+        }
+
+        /* Left Panel: Strategy */
+        .strategy-panel {
+            width: 45%;
+            height: 100%;
+            z-index: 10;
+            padding: 60px 40px 60px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(16, 185, 129, 0.2);
+            background: rgba(2, 44, 34, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .panel-label {
+            font-size: 0.9rem;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .panel-label::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background-color: #10b981;
+            margin-right: 10px;
+        }
+
+        .strategy-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .advisor-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            align-self: flex-start;
+        }
+
+        .advisor-badge i {
+            color: #34d399;
+            margin-right: 8px;
+        }
+
+        .advisor-text {
+            font-size: 0.9rem;
+            color: #6ee7b7;
+            font-weight: 500;
+        }
+
+        .strategy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .strategy-item {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateX(5px);
+        }
+
+        .item-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(6, 78, 59, 0.6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #10b981;
+            font-size: 1.1rem;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .item-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .item-content p {
+            font-size: 0.85rem;
+            color: #d1d5db;
+            line-height: 1.4;
+        }
+
+        /* Right Panel: Hero CTA */
+        .cta-panel {
+            width: 55%;
+            height: 100%;
+            z-index: 10;
+            padding: 60px 80px 60px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: #10b981;
+            opacity: 0.2;
+            position: absolute;
+            top: 20%;
+            left: 40px;
+        }
+
+        .final-message {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            position: relative;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .highlight-text {
+            color: #34d399;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(16, 185, 129, 0.3);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .brand-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+        }
+
+        .logo-area {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            color: #10b981;
+            margin-right: 8px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 20px;
+        }
+
+        /* CTA Button (Visual only) */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #10b981;
+            color: #064e3b;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .cta-button i {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+        <!-- Left Panel: Strategy -->
+        <div class="strategy-panel">
+            <div class="panel-label">Personal Branding Strategy</div>
+            <h1 class="strategy-title">Become the Advisor</h1>
+            <div class="advisor-badge">
+                <i class="fas fa-certificate"></i>
+                <span class="advisor-text">Goal: Academic Transformation Advisor</span>
+            </div>
+            <div class="strategy-list">
+                <!-- Item 1 -->
+                <div class="strategy-item">
+                    <div class="item-icon"><i class="fab fa-linkedin-in"></i></div>
+                    <div class="item-content">
+                        <h4>Thought Leadership</h4>
+                        <p>Weekly LinkedIn posts on AI trends in education.</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="strategy-item">
+                    <div class="item-icon"><i class="fas fa-video"></i></div>
+                    <div class="item-content">
+                        <h4>Value-First Videos</h4>
+                        <p>Short explainers on specific AI use cases and benefits.</p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="strategy-item">
+                    <div class="item-icon"><i class="fas fa-quote-right"></i></div>
+                    <div class="item-content">
+                        <h4>Campus Stories</h4>
+                        <p>Share genuine stories from campus visits and client successes.</p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="strategy-item">
+                    <div class="item-icon"><i class="fas fa-file-contract"></i></div>
+                    <div class="item-content">
+                        <h4>Mini Case Studies</h4>
+                        <p>Systematically publish proof of academic improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Right Panel: Hero CTA -->
+        <div class="cta-panel">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <div class="final-message">
+                <p>"Let’s empower institutions with <span class="highlight-text">intelligent learning</span> and
+                    AI-driven academic success."</p>
+            </div>
+            <div class="cta-button">
+                Let's Transform Education <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="brand-footer">
+                <div class="logo-area">
+                    <img src="logo.png" alt="WeLe IntelliTech Logo"
+                        style="width: 40px; height: 40px; object-fit: contain; margin-right: 12px; filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.4));">
+                    WeLe IntelliTech
+                </div>
+                <div class="tagline">
+                    Innovative Market &amp; Sales Strategy 2025
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight);
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+
+</body>
+
+</html>

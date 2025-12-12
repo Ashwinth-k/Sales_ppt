@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Customer Segments &amp; Decision Makers</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Elements - using blur for gradient-like effect without gradient CSS */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 700px;
+            height: 700px;
+            background-color: #065f46;
+            top: -200px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: #047857;
+            bottom: -150px;
+            right: -100px;
+        }
+
+        /* Header */
+        .header-section {
+            z-index: 10;
+            padding: 20px 60px 10px 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto 10px auto;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #d1fae5;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 10px 60px 40px 60px;
+            z-index: 10;
+            display: flex;
+            gap: 40px;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .column-icon-header {
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #6ee7b7;
+            font-size: 1.2rem;
+        }
+
+        .column-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Segment Cards (Left Column) */
+        .segment-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .segment-card:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .segment-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(5, 150, 105, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: #34d399;
+            font-size: 1.25rem;
+        }
+
+        .segment-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .segment-info p {
+            font-size: 0.9rem;
+            color: #d1fae5;
+            line-height: 1.4;
+        }
+
+        /* Decision Maker Cards (Right Column) */
+        .decision-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .decision-card:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .role-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .decision-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .decision-icon {
+            margin-right: 12px;
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        .decision-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .decision-details {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+            line-height: 1.5;
+            padding-left: 32px;
+            margin-bottom: 4px;
+        }
+
+        .value-prop {
+            margin-top: 8px;
+            padding-left: 32px;
+            font-size: 0.85rem;
+            color: #6ee7b7;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo"
+            style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">Customer Segments &amp; Decision Makers</h1>
+            <div class="title-underline"></div>
+            <p class="subtitle">Focusing on institutions with high tracking complexity and targeting roles responsible
+                for academic excellence and budget.</p>
+        </div>
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Left Column: Primary Segments -->
+            <div class="column">
+                <div class="column-header">
+                    <div class="column-icon-header">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h2 class="column-title">Primary Segments</h2>
+                </div>
+                <div class="segment-card">
+                    <div class="segment-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="segment-info">
+                        <h3>Higher Education</h3>
+                        <p>Engineering, Autonomous, and Arts &amp; Science Colleges needing complex syllabus management.
+                        </p>
+                    </div>
+                </div>
+                <div class="segment-card">
+                    <div class="segment-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="segment-info">
+                        <h3>K-12 School Chains</h3>
+                        <p>Large multi-branch school networks requiring unified centralized academic oversight.</p>
+                    </div>
+                </div>
+                <div class="segment-card">
+                    <div class="segment-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="segment-info">
+                        <h3>Specialized Training</h3>
+                        <p>Coaching Institutes &amp; Skill Training Centers focused on outcome-based learning.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Key Decision Makers -->
+            <div class="column">
+                <div class="column-header">
+                    <div class="column-icon-header">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2 class="column-title">Key Decision Makers</h2>
+                </div>
+                <div class="decision-card">
+                    <span class="role-badge">Executive</span>
+                    <div class="decision-header">
+                        <div class="decision-icon"><i class="fas fa-chess-king"></i></div>
+                        <h3 class="decision-title">Chairman / Principal</h3>
+                    </div>
+                    <p class="decision-details">Focuses on institutional vision, accreditation (NAAC/NBA), and overall
+                        ROI.</p>
+                    <p class="value-prop">"Will this improve our ranking and admissions?"</p>
+                </div>
+                <div class="decision-card">
+                    <span class="role-badge">Operational</span>
+                    <div class="decision-header">
+                        <div class="decision-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="decision-title">HODs / Coordinators</h3>
+                    </div>
+                    <p class="decision-details">Manages day-to-day academic delivery, faculty workload, and student
+                        progress.</p>
+                    <p class="value-prop">"Will this reduce my administrative headache?"</p>
+                </div>
+                <div class="decision-card">
+                    <span class="role-badge">Technical</span>
+                    <div class="decision-header">
+                        <div class="decision-icon"><i class="fas fa-network-wired"></i></div>
+                        <h3 class="decision-title">IT Admin</h3>
+                    </div>
+                    <p class="decision-details">Responsible for software integration, data security, and platform
+                        scalability.</p>
+                    <p class="value-prop">"Is it secure and easy to deploy?"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight);
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+
+</body>
+
+</html>

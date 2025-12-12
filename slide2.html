@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About WeLe IntelliTech: Our Vision</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Elements */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #065f46;
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #047857;
+            bottom: -150px;
+            left: -100px;
+        }
+
+        /* Content Layout */
+        .header-section {
+            z-index: 10;
+            padding: 20px 60px 10px 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .main-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #d1fae5;
+            max-width: 900px;
+            margin: 0 auto 1.5rem auto;
+            font-weight: 300;
+        }
+
+        .content-split {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            padding: 0 60px 40px 60px;
+            z-index: 10;
+            gap: 40px;
+        }
+
+        .left-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Bullet Cards */
+        .vision-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .vision-icon {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .vision-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #6ee7b7;
+            margin-bottom: 4px;
+        }
+
+        .vision-content p {
+            font-size: 0.95rem;
+            color: #e5e7eb;
+            line-height: 1.4;
+        }
+
+        /* AI Illustration Area */
+        .ai-brain-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border: 1px dashed rgba(16, 185, 129, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .ring-1 {
+            width: 330px;
+            height: 330px;
+        }
+
+        .ring-2 {
+            width: 240px;
+            height: 240px;
+            border-style: solid;
+            opacity: 0.2;
+            animation-direction: reverse;
+        }
+
+        .brain-icon-large {
+            font-size: 8rem;
+            color: #10b981;
+            text-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+            z-index: 5;
+        }
+
+        .positioning-box {
+            position: relative;
+            bottom: auto;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            background: rgba(6, 78, 59, 0.8);
+            border-radius: 50px;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        .positioning-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            font-size: 1.1rem;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .node-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #34d399;
+        }
+
+        /* Decoration grid */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo" style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="grid-overlay"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">About WeLe IntelliTech: Our Vision</h1>
+            <div class="title-underline"></div>
+            <p class="main-description">WeLe is a comprehensive AI-powered academic automation ecosystem designed to
+                solve institutional inefficiencies and elevate learning outcomes.</p>
+        </div>
+        <!-- Main Content Split -->
+        <div class="content-split">
+            <!-- Left Column: Bullet Points -->
+            <div class="left-column">
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <span style="font-size: 1.2rem;">🎯</span>
+                    </div>
+                    <div class="vision-content">
+                        <h3>Automate</h3>
+                        <p>Syllabus planning, assessment mapping, and seamless academic tracking.</p>
+                    </div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <span style="font-size: 1.2rem;">📊</span>
+                    </div>
+                    <div class="vision-content">
+                        <h3>Insight</h3>
+                        <p>Provide real-time, unified dashboards for data-driven management decisions.</p>
+                    </div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <span style="font-size: 1.2rem;">📈</span>
+                    </div>
+                    <div class="vision-content">
+                        <h3>Elevate</h3>
+                        <p>Improve student performance using AI-driven insights and predictions.</p>
+                    </div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <span style="font-size: 1.2rem;">🧑‍🏫</span>
+                    </div>
+                    <div class="vision-content">
+                        <h3>Simplify</h3>
+                        <p>Reduce teacher workload with zero manual reporting and administrative tasks.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Visual -->
+            <div class="right-column">
+                <div class="ai-brain-container">
+                    <div class="orbit-ring ring-1"></div>
+                    <div class="orbit-ring ring-2"></div>
+                    <!-- Orbiting Nodes -->
+                    <div class="node-dot" style="top: 0; left: 50%; transform: translate(-50%, -50%);"></div>
+                    <div class="node-dot" style="bottom: 15%; right: 15%;"></div>
+                    <div class="node-dot" style="bottom: 15%; left: 15%;"></div>
+                    <div class="brain-icon-large" style="display: flex; justify-content: center; align-items: center;">
+                        <img src="logo.png" alt="WeLe IntelliTech Logo"
+                            style="width: 150px; height: 150px; object-fit: contain; filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.6));">
+                    </div>
+                </div>
+                <div class="positioning-box">
+                    <p class="positioning-text">“Where intelligent analytics improves learning outcomes.”</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight);
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+
+</body>
+
+</html>

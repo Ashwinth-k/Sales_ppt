@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Modern Outbound Sales Strategy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+    
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #022c22;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #022c22;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Background Ambience */
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 700px;
+            height: 700px;
+            background-color: #064e3b;
+            top: -300px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: #047857;
+            bottom: -200px;
+            right: -100px;
+        }
+
+        /* Header */
+        .header-section {
+            z-index: 10;
+            padding: 40px 60px 10px 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: #10b981;
+            border-radius: 2px;
+            margin: 0 auto;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            color: #d1fae5;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Process Flow */
+        .process-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+            z-index: 10;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .step-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 20px 15px;
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            border-color: #10b981;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            background-color: #064e3b;
+            border: 2px solid #10b981;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: #6ee7b7;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover .icon-wrapper {
+            background: #10b981;
+            color: #022c22;
+            transform: scale(1.1);
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            height: 42px;
+            /* Fixed height for alignment */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #d1d5db;
+            text-align: center;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        /* Arrow Connector */
+        .connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(16, 185, 129, 0.4);
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        /* Footer Message */
+        .footer-message {
+            z-index: 10;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .consultant-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(6, 78, 59, 0.6);
+            border: 1px solid #10b981;
+            border-radius: 50px;
+            padding: 10px 30px;
+            gap: 12px;
+        }
+
+        .badge-icon {
+            color: #34d399;
+        }
+
+        .badge-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .highlight {
+            color: #34d399;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <img src="logo.png" alt="Logo" style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; z-index: 1000; object-fit: contain;">
+        <!-- Background -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="title">Modern Outbound Sales Strategy</h1>
+            <div class="title-underline"></div>
+            <p class="subtitle">Replacing generic pitches with high-value, consultative engagement tools.</p>
+        </div>
+        <!-- Process Flow -->
+        <div class="process-wrapper">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="icon-wrapper">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="card-title">Institution Profiling Report</h3>
+                <p class="card-desc">Start the conversation by presenting a customized gap analysis of their current
+                    academic workflow.</p>
+            </div>
+            <!-- Connector -->
+            <div class="connector">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="icon-wrapper">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3 class="card-title">Academic Scorecard</h3>
+                <p class="card-desc">A quick, 15-minute diagnostic to identify the health of their core academic
+                    processes and risks.</p>
+            </div>
+            <!-- Connector -->
+            <div class="connector">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="icon-wrapper">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <h3 class="card-title">Dept-Focused Demo Days</h3>
+                <p class="card-desc">Separate demonstrations tailored to show specific AI-value for Engineering vs. Arts
+                    faculty.</p>
+            </div>
+            <!-- Connector -->
+            <div class="connector">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <!-- Step 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="icon-wrapper">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="card-title">Campus Walk-in Demos</h3>
+                <p class="card-desc">High-impact, on-ground engagement directly with faculty and management teams.</p>
+            </div>
+            <!-- Connector -->
+            <div class="connector">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <!-- Step 5 -->
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div class="icon-wrapper">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3 class="card-title">Syllabus-to-AI Workshop</h3>
+                <p class="card-desc">Hands-on session showing how their existing syllabus transforms into predictive
+                    insights.</p>
+            </div>
+        </div>
+        <!-- Footer Objective -->
+        <div class="footer-message">
+            <div class="consultant-badge">
+                <i class="fas fa-user-tie badge-icon"></i>
+                <p class="badge-text">Objective: Position the BDE as an <span class="highlight">Academic Transformation
+                        Consultant</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scaleSlide() {
+            const container = document.querySelector('.slide-container');
+            if (container) {
+                const targetWidth = 1280;
+                const targetHeight = 720;
+                const scale = Math.min(window.innerWidth / targetWidth, window.innerHeight / targetHeight); 
+                container.style.transform = `scale(${scale})`;
+                // Optional: ensure it doesn't overflow if exact match
+                // container.style.width = `${targetWidth}px`;
+                // container.style.height = `${targetHeight}px`;
+            }
+        }
+        window.addEventListener('resize', scaleSlide);
+        window.addEventListener('load', scaleSlide);
+        // Initial call
+        scaleSlide();
+    </script>
+    
+</body>
+
+</html>
